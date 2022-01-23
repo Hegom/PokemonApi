@@ -1,13 +1,14 @@
-﻿using PokemonApi.Core.Interface;
+﻿using PokemonApi.Core.Infrastructure;
+using PokemonApi.Core.Interface;
 using PokemonApi.Core.Model;
 
 namespace PokemonApi.Infrastructure
 {
     public class UserService : IUserService
     {
-        public IPokemonRepository Repository { get; set; }
+        public IUserRepository Repository { get; set; }
 
-        public UserService(IPokemonRepository repository)
+        public UserService(IUserRepository repository)
         {
             Repository = repository;
         }

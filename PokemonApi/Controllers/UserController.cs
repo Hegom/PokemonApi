@@ -67,6 +67,5 @@ namespace PokemonApi.Controllers
             if (result != null) return Ok(result);
             else return BadRequest("Invalid credentials");
         }
-
     }
 }

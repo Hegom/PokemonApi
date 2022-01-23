@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using PokemonApi.Core.Infrastructure;
 using PokemonApi.Core.Interface;
 using PokemonApi.Core.Model;
 using PokemonApi.Infrastructure;
@@ -21,11 +22,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    //c.SwaggerDoc("v1", new OpenApiInfo
-    //{
-    //    Title = "Pokemon API",
-    //    Version = "v1"
-    //});
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "Pokemon API",
+        Version = "v1"
+    });
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Type = SecuritySchemeType.Http,
@@ -34,20 +35,20 @@ builder.Services.AddSwaggerGen(c =>
         Scheme = "bearer",
         Description = "Please insert JWT token into field"
     });
-    //  c.AddSecurityRequirement(new OpenApiSecurityRequirement
-    // {
-    //    {
-    //      new OpenApiSecurityScheme
-    //      {
-    //          Reference = new OpenApiReference
-    //          {
-    //              Type = ReferenceType.SecurityScheme,
-    //              Id = "Bearer"
-    //          }
-    //      },
-    //      new string[] { }
-    //  }
-    //});
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+     {
+        {
+          new OpenApiSecurityScheme
+          {
+              Reference = new OpenApiReference
+              {
+                  Type = ReferenceType.SecurityScheme,
+                  Id = "Bearer"
+              }
+          },
+          new string[] { }
+      }
+    });
 });
 
 builder.Services.AddResponseCaching();
@@ -55,8 +56,9 @@ builder.Services.AddCors();
 
 builder.Services.AddDbContext<PokemonApiContext>(opt => opt.UseInMemoryDatabase("InMemoryPokemonDb"));
 builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<IPokemonRepository, UserRepository>();
-builder.Services.AddSingleton<IPokemonRepository, UserRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IPokemonRepository, PokemonRepository>();
+builder.Services.AddScoped<IPokemonService, PokemonService>();
 builder.Services.Configure<AppSettings>(appSettingsSection);
 
 var key = Encoding.ASCII.GetBytes(configuration["AppSettings:Secret"]);

@@ -2,7 +2,7 @@
 
 namespace PokemonApi.Infrastructure
 {
-    public interface IPokemonRepository
+    public interface IPokemonService
     {
         Task<bool> Create(int userId, Pokemon pokemon);        
         Task<List<Pokemon>> GetAll(int page, int pageSize);

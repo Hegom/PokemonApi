@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using PokemonApi.Core.Infrastructure;
 using PokemonApi.Core.Model;
 using PokemonApi.Infrastructure.Util;
 using System.IdentityModel.Tokens.Jwt;
@@ -10,7 +11,7 @@ using System.Text;
 
 namespace PokemonApi.Infrastructure.Respositories
 {
-    public class UserRepository : IPokemonRepository
+    public class UserRepository : IUserRepository
     {
         private readonly IServiceScope _scope;
         private readonly PokemonApiContext _databaseContext;
@@ -25,6 +26,7 @@ namespace PokemonApi.Infrastructure.Respositories
 
         public async Task<bool> Create(User user)
         {
+            user.Id = _databaseContext.User.Any() ? _databaseContext.User.Max(x => x.Id) + 1 : 0;
             _databaseContext.User.Add(user);
             var result = await _databaseContext.SaveChangesAsync();
             return result == 1;
@@ -57,6 +59,7 @@ namespace PokemonApi.Infrastructure.Respositories
                 return (false, $"The user with the email: {user.Email} already exists.");
             }
 
+            user.Id = _databaseContext.User.Any() ? _databaseContext.User.Max(x => x.Id) + 1 : 0;
             user.Password = user.Password.GetSHA256();
             _databaseContext.User.Add(user);
             var result = await _databaseContext.SaveChangesAsync();
