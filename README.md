@@ -12,13 +12,11 @@ The authentication is implemented manually using JWT tokens.
 
 - To execute the Api just run the solution and you will see a Swagger UI.
 
-- You can add bearer tokens in swagger.
+## To test the demo.
 
-- You also can use Postman, this collection has all the required methods to test the demo 
+- You can use Postman, this collection has all the required methods to test the demo 
     - Local: https://www.getpostman.com/collections/942a2717be931b140508
     - Azure: https://www.getpostman.com/collections/cd84780cce8a60800ab3
-
-## To test the demo.
 
 - The Api is deployed in Azure: https://pokemonapidemo.azurewebsites.net/swagger
 
