@@ -1,13 +1,9 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using PokemonApi.Core.Interface;
-using PokemonApi.Core.Model;
+﻿using Microsoft.AspNetCore.Mvc;
 using PokemonApi.Infrastructure;
 
 namespace PokemonApi.Controllers
 {
     [Route("api/[controller]")]
-    [ResponseCache(Duration = 60, Location = ResponseCacheLocation.Any)]
     [ApiController]
     public class RandomNumberController : ControllerBase
     {
