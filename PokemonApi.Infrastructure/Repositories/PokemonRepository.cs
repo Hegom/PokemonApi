@@ -24,13 +24,13 @@ namespace PokemonApi.Infrastructure.Respositories
             return result == 1;
         }
 
-        public async Task<List<Pokemon>> GetAll(int page, int pageSize)
+        public async Task<IEnumerable<Pokemon>> GetAll(int page, int pageSize)
         {
             _databaseContext.Database.EnsureCreated();
             return await _databaseContext.Pokemon.Where(x => x.IsPublic).Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
         }
 
-        public async Task<List<Pokemon>> GetAllByUser(int userId, int page, int pageSize)
+        public async Task<IEnumerable<Pokemon>> GetAllByUser(int userId, int page, int pageSize)
             => await _databaseContext.Pokemon.Where(x => x.CreatedyByUserId == userId).Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
 
         public async Task<(bool, string)> Update(int userId, int id, Pokemon pokemon)

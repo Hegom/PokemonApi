@@ -1,46 +1,50 @@
-//using Employees.Core.Dto;
-//using Employees.Core.Enum;
-//using Employees.Core.Intefaces;
-//using Employees.Infrastructure.Services;
+using Moq;
+using PokemonApi.Core.Model;
+using PokemonApi.Infrastructure;
 using Xunit;
 
 namespace PokemonApi.Test
 {
     public class PokemonTest
     {
-        //IEmployeeFactory EmployeeFactory;
+        private readonly IPokemonRepository _companyProfileQueries;
+        private readonly PokemonService _subject;
 
         public PokemonTest()
         {
-            //EmployeeFactory = new EmployeeFactory();
+            _companyProfileQueries = Mock.Of<IPokemonRepository>();
+            _subject = new PokemonService(_companyProfileQueries);
         }
 
         [Fact]
-        public void ShouldCalculateAnnualSalaryForHourlyContract()
+        public async Task ShouldCalculateAnnualSalaryForHourlyContract()
         {
-            //var employeeDto = new EmployeeDto { contractTypeName = ContractType.Hourly, hourlySalary = 300 };
-            //var employeeAnaualSalary = 120 * employeeDto.hourlySalary * 12;
+            var fakeUserId = 99;
+            var page = 0;
+            var pageSize = 10;
 
-            ////act
-            //var employee = EmployeeFactory.GetEmployee(employeeDto);
+            var fakePokemons = new List<Pokemon>() {
+               new Pokemon { Id = 1, Name = "Zapdos", Evolution = "None", Weight = 100, Width = 100, CreatedyByUserId = 90, IsPublic = true },
+               new Pokemon { Id = 2, Name = "Gyarados", Evolution = "None", Weight = 100, Width = 100, CreatedyByUserId = 95, IsPublic = true },
+               new Pokemon { Id = 3, Name = "Bulbasaur", Evolution = "Ivysaur", Weight = 100, Width = 100, CreatedyByUserId = 99, IsPublic = true },
+               new Pokemon { Id = 4, Name = "Eevee", Evolution = "Vaporeon, Jolteon, Flareon", Weight = 100, Width = 100, CreatedyByUserId = 99, IsPublic = true }
+                };
 
+            Mock.Get(_companyProfileQueries)
+                .Setup(x => x.GetAll(page, pageSize))
+                .ReturnsAsync(fakePokemons);
 
-            ////assert
-            //Assert.Equal(employeeAnaualSalary, employee.AnnualSalary);
+            Mock.Get(_companyProfileQueries)
+               .Setup(x => x.GetAllByUser(fakeUserId, page, pageSize))
+               .ReturnsAsync(fakePokemons);
 
-        }
+            var allPokemons = (await _subject.GetAll(page, pageSize))?.ToList();
+            var userPokemons = (await _subject.GetAllByUser(fakeUserId, page, pageSize))?.ToList();
 
-        [Fact]
-        public void ShouldCalculateAnnualSalaryForMonthlyContract()
-        {
-            //var employeeDto = new EmployeeDto { contractTypeName = ContractType.Monthly, monthlySalary = 20000 };
-            //var employeeAnaualSalary = employeeDto.monthlySalary * 12;
-
-            ////act
-            //var employee = EmployeeFactory.GetEmployee(employeeDto);
-
-            ////assert
-            //Assert.Equal(employeeAnaualSalary, employee.AnnualSalary);
-        }
+            Assert.NotNull(allPokemons);
+            Assert.True(allPokemons.Count == 4);
+            Assert.NotNull(userPokemons);
+            Assert.True(userPokemons.Count == 4);
+        }       
     }
 }

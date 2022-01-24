@@ -27,6 +27,10 @@ builder.Services.AddSwaggerGen(c =>
         Title = "Pokemon API",
         Version = "v1"
     });
+
+    var filePath = Path.Combine(System.AppContext.BaseDirectory, "PokemonApi.xml");
+    c.IncludeXmlComments(filePath);
+
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Type = SecuritySchemeType.Http,
@@ -59,6 +63,8 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IPokemonRepository, PokemonRepository>();
 builder.Services.AddScoped<IPokemonService, PokemonService>();
+builder.Services.AddScoped<IRandomNumberService, RandomNumberService>();
+builder.Services.AddScoped<IRandomNumberRepository, RandomNumberRepository>();
 builder.Services.Configure<AppSettings>(appSettingsSection);
 
 var key = Encoding.ASCII.GetBytes(configuration["AppSettings:Secret"]);

@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokemonApi", "PokemonApi\PokemonApi.csproj", "{3553AD67-7176-4B73-A6EE-702C75E2DEEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokemonApi", "PokemonApi\PokemonApi.csproj", "{3553AD67-7176-4B73-A6EE-702C75E2DEEB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokemonApi.Core", "PokemonApi.Core\PokemonApi.Core.csproj", "{8AC91842-71A7-4166-8154-8F9CA58345D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokemonApi.Core", "PokemonApi.Core\PokemonApi.Core.csproj", "{8AC91842-71A7-4166-8154-8F9CA58345D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokemonApi.Infrastructure", "PokemonApi.Infrastructure\PokemonApi.Infrastructure.csproj", "{2052CAD4-CB08-45EB-A51E-B4ADDE40E8F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokemonApi.Infrastructure", "PokemonApi.Infrastructure\PokemonApi.Infrastructure.csproj", "{2052CAD4-CB08-45EB-A51E-B4ADDE40E8F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokemonApi.Test", "PokemonApi.Test\PokemonApi.Test.csproj", "{AB2C65BF-E348-4CD9-AE90-314111303E86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokemonApi.Test", "PokemonApi.Test\PokemonApi.Test.csproj", "{AB2C65BF-E348-4CD9-AE90-314111303E86}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
