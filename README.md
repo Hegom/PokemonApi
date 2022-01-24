@@ -1,6 +1,6 @@
 # Pokemon API
 
-This demo uses InMemory database, no need to generate databases with codefirst.
+This demo uses InMemory database.
 
 The seed data is 4 public pokemon added when the model is created.
 
@@ -12,7 +12,7 @@ The authentication is implemented manually using JWT tokens.
 
 - To execute the Api just run the solution and you will see a Swagger UI.
 
-## To test the demo.
+## To test the demo:
 
 - You can use Postman, this collection has all the required methods to test the demo 
     - Local: https://www.getpostman.com/collections/942a2717be931b140508
