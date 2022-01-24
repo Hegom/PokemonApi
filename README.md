@@ -14,9 +14,13 @@ The authentication is implemented manually using JWT tokens.
 
 - You can add bearer tokens in swagger.
 
-- You also can use Postman, this collection has all the required methods to test the demo https://www.getpostman.com/collections/942a2717be931b140508
+- You also can use Postman, this collection has all the required methods to test the demo 
+    - Local: https://www.getpostman.com/collections/942a2717be931b140508
+    - Azure: https://www.getpostman.com/collections/cd84780cce8a60800ab3
 
 ## To test the demo.
+
+- The Api is deployed in Azure: https://pokemonapidemo.azurewebsites.net/swagger
 
 - Use the endpoint `register` with an email and password to add a new users to the database.
 
